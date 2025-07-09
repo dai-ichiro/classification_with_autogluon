@@ -1,3 +1,4 @@
+--extra-index-url https://download.pytorch.org/whl/cu126
 absl-py==2.3.1
 accelerate==1.8.1
 adagio==0.2.6
