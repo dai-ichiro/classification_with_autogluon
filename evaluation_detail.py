@@ -6,6 +6,8 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
+import typer
+from typer import Option
 
 def plot_confusion_matrix(y_true, y_pred, figsize=(8, 6), save_path=None):
     """
@@ -137,17 +139,25 @@ def alternative_visualization(y_true, y_pred):
         print("誤分類はありません（完璧な分類）")
 
 # 使用例
-def main_visualization():
+def main_visualization(
+    foldername: str = Option(..., "-m", "--model", help="学習済みモデルのフォルダ"),
+    test_data: str = Option(..., "-d", "--data", help="テストデータ")
+    ):
     """
     メイン関数（可視化専用）
+
+    Args:
+        foldername: 学習済みモデルのフォルダ
+        
+        test_data: テストデータ
     """
     try:
         # テストデータの読み込み
-        test_df = pd.read_pickle("test.pkl")
+        test_df = pd.read_pickle(test_data)
         
         # 予測器の読み込み
         from autogluon.multimodal import MultiModalPredictor
-        predictor = MultiModalPredictor.load("simple_best_quality")
+        predictor = MultiModalPredictor.load(foldername)
         
         # 予測実行
         print("予測実行中...")
@@ -180,4 +190,4 @@ def main_visualization():
         plot_confusion_matrix(sample_true, sample_pred)
 
 if __name__ == "__main__":
-    main_visualization()
+    typer.run(main_visualization)
