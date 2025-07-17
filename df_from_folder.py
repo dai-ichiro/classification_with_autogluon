@@ -10,8 +10,6 @@ def create_df(database, folder):
         database (str): 基本パス（各フォルダが含まれるディレクトリ）
 
         folder (str): train, val, or test
-
-        label_file (str): # フォルダ名とラベルが書かれたファイル
     
     Returns:
         pd.DataFrame: image列とlabel列を持つDataFrame
