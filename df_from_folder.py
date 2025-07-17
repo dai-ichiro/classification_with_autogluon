@@ -2,12 +2,12 @@ from pathlib import Path
 import pandas as pd
 from pprint import pprint
 
-def create_df(database, folder):
+def create_df(database: str | Path, folder: str) -> pd.DataFrame:
     """
     フォルダ構成からpandas DataFrameを作成する関数
     
     Args:
-        database (str): 基本パス（各フォルダが含まれるディレクトリ）
+        database (str | Path): 基本パス（各フォルダが含まれるディレクトリ）
 
         folder (str): train, val, or test
     
