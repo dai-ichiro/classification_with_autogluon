@@ -17,7 +17,7 @@ def create_df(database, folder):
     
     dir_path = Path(database, folder)
 
-    label_file = Path(database, "label_file.txt")
+    label_file = Path(database, "labels.txt")
 
     if label_file.exists():
         print(f"\n{label_file.as_posix()}をもとにファルダ名とラベルのマッピングを行います")
