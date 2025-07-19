@@ -31,16 +31,17 @@ def create_df(database: str | Path, folder: str) -> pd.DataFrame:
                     folder_labels[key.strip()] = int(value.strip())
     else:
         print("\n新規にファルダ名とラベルのマッピングを行います")
-        print(f"結果は{label_file.as_posix()}に保存しました")
 
-        folders = [p.name for p in dir_path.iterdir() if p.is_dir()]
+        from torchvision.datasets import ImageFolder
+        temp_dataset = ImageFolder(dir_path)
 
         # フォルダ名とラベルのマッピング
-        folder_labels = {name: idx for idx, name in enumerate(folders)}
+        folder_labels = {name: idx for idx, name in enumerate(temp_dataset.classes)}
         
         with open(label_file, "w", encoding="utf-8") as f:
             for key, value in folder_labels.items():
                 f.write(f"{key}: {value}\n")
+        print(f"結果は{label_file.as_posix()}に保存しました")
 
     print()
     pprint(folder_labels, width=1, sort_dicts=False)
