@@ -30,7 +30,8 @@ def main(
         n_components=2,
         perplexity=30,
         init="random",
-        learning_rate="auto"
+        learning_rate="auto",
+        random_state=0
     ).fit_transform(X_pca)
 
     category = list(test_df["label"])
